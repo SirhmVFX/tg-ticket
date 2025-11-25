@@ -6,7 +6,6 @@ import { addGuest } from "@/lib/firebase";
 import Image from "next/image";
 
 interface Guest {
-  id: string;
   name: string;
   ticketId: string;
   qrData: string;
@@ -48,13 +47,12 @@ export default function AddGuest() {
       )}`;
 
       const guestData = {
-        id: "",
         name: guestName,
         ticketId: ticketId,
         qrData: qrData,
         qrUrl: qrUrl,
         checkedIn: false,
-        checkedInAt: false,
+        checkedInAt: "",
         createdAt: new Date().toISOString(),
       };
 
@@ -65,6 +63,7 @@ export default function AddGuest() {
         checkedInAt: "",
       });
       setGuestName("");
+
       setMessage({ type: "success", text: "Guest added successfully!" });
     } catch (error) {
       setMessage({ type: "error", text: "Failed to add guest" });
@@ -81,7 +80,7 @@ export default function AddGuest() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 py-8 h-full">
+    <div className="max-w-4xl mx-auto p-4 py-32 h-screen">
       <div className="bg-white/10 backdrop-blur-md border border-rose-200/30 rounded-2xl p-8">
         <h2 className="text-3xl font-bold text-rose-100 mb-6">
           Generate Guest Invitation
@@ -115,7 +114,7 @@ export default function AddGuest() {
               {qrCode.name}
             </h3>
             <Image
-              src={qrCode.qrUrl}
+              src={qrCode?.qrUrl}
               alt="QR Code"
               width={256}
               height={256}
