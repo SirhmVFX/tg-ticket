@@ -85,13 +85,34 @@ export default function AddGuest() {
   };
 
   const handleSendWhatsApp = (guest: Guest) => {
-    const msg = `💝 *Toluwani & Gbenga Wedding Invitation* 💝%0A%0AHi ${guest.name}!%0A%0AYou're cordially invited to celebrate our special day!%0A%0A✨ Please save this QR code and present it at the entrance.%0A%0A#good&perfect%0A%0ATicket ID: ${guest.ticketId}%0A%0AWe can't wait to see you!`;
+    const messageParts = [
+      "💝 *Toluwani & Gbenga Wedding Invitation* 💝",
+      "",
+      `Hi ${guest.name}!`,
+      "",
+      "You're cordially invited to celebrate our special day!",
+      "",
+      "✨ Please save this QR code and present it at the entrance.",
+      "",
+      "#good&perfect",
+      "",
+      `Ticket ID: ${guest.ticketId}`,
+      "",
+      "We can't wait to see you!",
+      "",
+      `Your QR Code: ${guest.qrUrl}`,
+    ];
+
+    // Join with newlines and encode the entire message
+    const fullMessage = messageParts.join("\n");
+    const encodedMessage = encodeURIComponent(fullMessage);
 
     // Format phone number (remove any non-numeric characters and add country code if needed)
     const formattedPhone = phoneNumber.startsWith("+")
       ? phoneNumber
       : `+234${phoneNumber.replace(/^0/, "")}`;
-    const whatsappUrl = `https://wa.me/${formattedPhone}?text=${msg}%0A%0AYour QR Code: ${guest.qrUrl}`;
+
+    const whatsappUrl = `https://wa.me/${formattedPhone}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
   };
 
