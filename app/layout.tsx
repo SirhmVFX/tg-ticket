@@ -18,11 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="h-full  relative">
+        <div className="h-full relative">
           <Navigation />
           <div className="absolute top-0 left-0 bottom-0 right-0 -z-10 ">
             <Image
-              src="/assets/bg.png"
+              src="/assets/bgg.jpg"
               alt="Wedding background"
               width={10000}
               height={10000}
@@ -30,7 +30,7 @@ export default function RootLayout({
               className="object-cover w-full h-full"
             />
           </div>
-          <div>{children}</div>
+          <div className="">{children}</div>
         </div>
       </body>
     </html>
