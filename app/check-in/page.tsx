@@ -141,7 +141,7 @@ export default function CheckIn() {
           onClose={() => setMessage({ type: "", text: "" })}
         />
 
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
+        {/* <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
           <p className="text-rose-200/80">
             Scan the QR code or paste the code data to check in guests
           </p>
@@ -164,7 +164,7 @@ export default function CheckIn() {
               </>
             )}
           </button>
-        </div>
+        </div> */}
 
         {isScanning && (
           <div className="relative w-full max-w-md mx-auto mb-6 rounded-xl overflow-hidden bg-black/50 border-2 border-rose-200/30">
