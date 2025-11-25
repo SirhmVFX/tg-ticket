@@ -28,6 +28,7 @@ interface QRCode {
 
 export default function AddGuest() {
   const [guestName, setGuestName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [qrCode, setQrCode] = useState<QRCode | null>(null);
   const [message, setMessage] = useState({ type: "", text: "" });
   const [loading, setLoading] = useState(false);
@@ -35,6 +36,16 @@ export default function AddGuest() {
   const handleAddGuest = async () => {
     if (!guestName.trim()) {
       setMessage({ type: "error", text: "Please enter a guest name" });
+      return;
+    }
+
+    // Basic phone number validation (you might want to enhance this)
+    const phoneRegex = /^[0-9]{10,14}$/;
+    if (!phoneNumber.trim() || !phoneRegex.test(phoneNumber)) {
+      setMessage({
+        type: "error",
+        text: "Please enter a valid phone number (10-14 digits)",
+      });
       return;
     }
 
@@ -75,7 +86,12 @@ export default function AddGuest() {
 
   const handleSendWhatsApp = (guest: Guest) => {
     const msg = `💝 *Toluwani & Gbenga Wedding Invitation* 💝%0A%0AHi ${guest.name}!%0A%0AYou're cordially invited to celebrate our special day!%0A%0A✨ Please save this QR code and present it at the entrance.%0A%0A#good&perfect%0A%0ATicket ID: ${guest.ticketId}%0A%0AWe can't wait to see you!`;
-    const whatsappUrl = `https://wa.me/?text=${msg}%0A%0AYour QR Code: ${guest.qrUrl}`;
+
+    // Format phone number (remove any non-numeric characters and add country code if needed)
+    const formattedPhone = phoneNumber.startsWith("+")
+      ? phoneNumber
+      : `+234${phoneNumber.replace(/^0/, "")}`;
+    const whatsappUrl = `https://wa.me/${formattedPhone}?text=${msg}%0A%0AYour QR Code: ${guest.qrUrl}`;
     window.open(whatsappUrl, "_blank");
   };
 
@@ -91,15 +107,30 @@ export default function AddGuest() {
           onClose={() => setMessage({ type: "", text: "" })}
         />
 
-        <input
-          type="text"
-          placeholder="Enter guest name"
-          value={guestName}
-          onChange={(e) => setGuestName(e.target.value)}
-          onKeyPress={(e) => e.key === "Enter" && !loading && handleAddGuest()}
-          disabled={loading}
-          className="w-full p-4 bg-white/20 border-2 border-rose-200/50 rounded-lg mb-4 focus:outline-none focus:border-rose-300 text-rose-100 placeholder-rose-200/50 disabled:opacity-50"
-        />
+        <div className="space-y-4">
+          <input
+            type="text"
+            placeholder="Enter guest name"
+            value={guestName}
+            onChange={(e) => setGuestName(e.target.value)}
+            onKeyPress={(e) =>
+              e.key === "Enter" && !loading && handleAddGuest()
+            }
+            disabled={loading}
+            className="w-full p-4 bg-white/20 border-2 border-rose-200/50 rounded-lg focus:outline-none focus:border-rose-300 text-rose-100 placeholder-rose-200/50 disabled:opacity-50"
+          />
+          <input
+            type="tel"
+            placeholder="Enter WhatsApp number (e.g., 08012345678)"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ""))}
+            onKeyPress={(e) =>
+              e.key === "Enter" && !loading && handleAddGuest()
+            }
+            disabled={loading}
+            className="w-full p-4 bg-white/20 border-2 border-rose-200/50 rounded-lg focus:outline-none focus:border-rose-300 text-rose-100 placeholder-rose-200/50 disabled:opacity-50"
+          />
+        </div>
         <button
           onClick={handleAddGuest}
           disabled={loading}
