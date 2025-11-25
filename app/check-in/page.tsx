@@ -26,11 +26,13 @@ export default function CheckIn() {
     }
 
     const ticketId = parts[1];
+    console.log(ticketId);
     setLoading(true);
 
     try {
       const guest = await getGuestByTicketId(ticketId);
       const result = await checkInGuest(guest.id);
+      console.log(guest);
 
       if (result.error) {
         setMessage({
@@ -57,7 +59,7 @@ export default function CheckIn() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 py-8">
+    <div className="max-w-4xl mx-auto p-4 py-32 h-screen">
       <div className="bg-white/10 backdrop-blur-md border border-rose-200/30 rounded-2xl p-8">
         <h2 className="text-3xl font-bold text-rose-100 mb-6">
           Guest Check-in
