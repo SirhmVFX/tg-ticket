@@ -98,6 +98,8 @@ export default function AddGuest() {
       "",
       `Ticket ID: ${guest.ticketId}`,
       "",
+      `QrCode Data: ${guest.qrData}`,
+      "",
       "We can't wait to see you!",
       "",
       `Your QR Code: ${guest.qrUrl}`,
