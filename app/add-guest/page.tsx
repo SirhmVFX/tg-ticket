@@ -11,7 +11,7 @@ interface Guest {
   qrData: string;
   qrUrl: string;
   checkedIn: boolean;
-  checkedInAt: string;
+  checkedInAt: null | Date;
   createdAt: string;
 }
 
@@ -22,7 +22,7 @@ interface QRCode {
   qrData: string;
   qrUrl: string;
   checkedIn: boolean;
-  checkedInAt: string;
+  checkedInAt: null | Date;
   createdAt: string;
 }
 
@@ -52,7 +52,7 @@ export default function AddGuest() {
         qrData: qrData,
         qrUrl: qrUrl,
         checkedIn: false,
-        checkedInAt: "",
+        checkedInAt: null,
         createdAt: new Date().toISOString(),
       };
 
@@ -60,7 +60,7 @@ export default function AddGuest() {
       setQrCode({
         ...guest,
         checkedIn: false,
-        checkedInAt: "",
+        checkedInAt: null,
       });
       setGuestName("");
 
