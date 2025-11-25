@@ -64,8 +64,8 @@ export default function Home() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 py-20 ">
-      <div className="text-center mb-12">
+    <div className="max-w-6xl mx-auto p-4 py-10 h-screen flex flex-col justify-end">
+      {/* <div className="text-center mb-12">
         <div className="mb-8">
           <div className="w-64 h-64 mx-auto mb-6 relative">
             <div className="absolute inset-0 bg-linear-to-br from-rose-200/20 to-transparent rounded-full blur-3xl"></div>
@@ -84,22 +84,24 @@ export default function Home() {
           Welcome to our wedding management system. Manage invitations,
           check-ins, and celebrate with us!
         </p>
-      </div>
+      </div> */}
 
-      <div className="grid md:grid-cols-2 gap-6 mb-8">
+      <div className="grid md:grid-cols-4 gap-6 mb-8">
         <Link
           href="/add-guest"
           className="group bg-white/10 backdrop-blur-md border border-rose-200/30 rounded-2xl p-8 hover:bg-white/20 transition-all duration-300 hover:scale-105"
         >
-          <div className="flex items-start justify-between mb-4">
-            <div className="bg-rose-500/20 p-4 rounded-xl group-hover:bg-rose-500/30 transition">
-              <QrCode className="text-rose-200" size={32} />
+          <div className="flex ">
+            <div className="flex items-start justify-between mb-4">
+              <div className="bg-rose-500/20 p-4 rounded-xl group-hover:bg-rose-500/30 transition">
+                <QrCode className="text-rose-200" size={18} />
+              </div>
             </div>
+            <h3 className="text-md font-bold text-rose-100 mb-2">
+              Generate Invitations
+            </h3>
           </div>
-          <h3 className="text-2xl font-bold text-rose-100 mb-2">
-            Generate Invitations
-          </h3>
-          <p className="text-rose-200/70">
+          <p className="text-rose-200/70 text-sm">
             Create personalized QR code invitations for your guests
           </p>
         </Link>
@@ -108,15 +110,17 @@ export default function Home() {
           href="/check-in"
           className="group bg-white/10 backdrop-blur-md border border-rose-200/30 rounded-2xl p-8 hover:bg-white/20 transition-all duration-300 hover:scale-105"
         >
-          <div className="flex items-start justify-between mb-4">
-            <div className="bg-rose-500/20 p-4 rounded-xl group-hover:bg-rose-500/30 transition">
-              <UserCheck className="text-rose-200" size={32} />
+          <div className="flex items-center">
+            <div className="flex items-start justify-between mb-4">
+              <div className="bg-rose-500/20 p-4 rounded-xl group-hover:bg-rose-500/30 transition">
+                <UserCheck className="text-rose-200" size={18} />
+              </div>
             </div>
+            <h3 className="text-md font-bold text-rose-100 mb-2">
+              Guest Check-in
+            </h3>
           </div>
-          <h3 className="text-2xl font-bold text-rose-100 mb-2">
-            Guest Check-in
-          </h3>
-          <p className="text-rose-200/70">
+          <p className="text-rose-200/70 text-sm">
             Scan QR codes and check in guests at the venue
           </p>
         </Link>
@@ -125,13 +129,15 @@ export default function Home() {
           href="/guest-list"
           className="group bg-white/10 backdrop-blur-md border border-rose-200/30 rounded-2xl p-8 hover:bg-white/20 transition-all duration-300 hover:scale-105"
         >
-          <div className="flex items-start justify-between mb-4">
-            <div className="bg-rose-500/20 p-4 rounded-xl group-hover:bg-rose-500/30 transition">
-              <List className="text-rose-200" size={32} />
+          <div className="flex items-center">
+            <div className="flex items-start justify-between mb-4">
+              <div className="bg-rose-500/20 p-4 rounded-xl group-hover:bg-rose-500/30 transition">
+                <List className="text-rose-200" size={18} />
+              </div>
             </div>
+            <h3 className="text-md font-bold text-rose-100 mb-2">Guest List</h3>
           </div>
-          <h3 className="text-2xl font-bold text-rose-100 mb-2">Guest List</h3>
-          <p className="text-rose-200/70">
+          <p className="text-rose-200/70 text-sm">
             View and manage all your wedding guests
           </p>
         </Link>
@@ -141,12 +147,16 @@ export default function Home() {
           disabled={stats.total === 0}
           className="group bg-white/10 backdrop-blur-md border border-rose-200/30 rounded-2xl p-8 hover:bg-white/20 transition-all duration-300 text-left hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          <div className="flex items-start justify-between mb-4">
-            <div className="bg-rose-500/20 p-4 rounded-xl group-hover:bg-rose-500/30 transition">
-              <Download className="text-rose-200" size={32} />
+          <div className="flex items-center">
+            <div className="flex items-start justify-between mb-4">
+              <div className="bg-rose-500/20 p-4 rounded-xl group-hover:bg-rose-500/30 transition">
+                <Download className="text-rose-200" size={18} />
+              </div>
             </div>
+            <h3 className="text-md font-bold text-rose-100 mb-2">
+              Export Data
+            </h3>
           </div>
-          <h3 className="text-2xl font-bold text-rose-100 mb-2">Export Data</h3>
           <p className="text-rose-200/70">
             Download guest list as CSV spreadsheet
           </p>
