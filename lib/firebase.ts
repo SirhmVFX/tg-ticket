@@ -27,17 +27,21 @@ const db = getFirestore(app);
 
 // Database operations
 
-interface Guest {
-  id: string;
+export interface NewGuest {
   name: string;
   qrData: string;
   qrUrl: string;
+  checkedIn: boolean;
   checkedInAt: boolean;
   createdAt: string;
   ticketId: string;
 }
 
-export const addGuest = async (guestData: Guest) => {
+export interface Guest extends NewGuest {
+  id: string;
+}
+
+export const addGuest = async (guestData: NewGuest): Promise<Guest> => {
   try {
     const docRef = await addDoc(collection(db, "guests"), guestData);
     return {
@@ -46,6 +50,7 @@ export const addGuest = async (guestData: Guest) => {
       qrData: guestData.qrData,
       qrUrl: guestData.qrUrl,
       checkedInAt: guestData.checkedInAt,
+      checkedIn: guestData.checkedIn,
       createdAt: guestData.createdAt,
       ticketId: guestData.ticketId,
     };
