@@ -32,7 +32,7 @@ export interface NewGuest {
   qrData: string;
   qrUrl: string;
   checkedIn: boolean;
-  checkedInAt: boolean;
+  checkedInAt: null | Date;
   createdAt: string;
   ticketId: string;
 }
